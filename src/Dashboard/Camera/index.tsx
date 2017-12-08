@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import api from '../../api';
+
 type props = {};
 type state = {
   stream?: string,
@@ -28,11 +30,24 @@ export default class Camera extends React.Component<props, state> {
     throw new Error('stream error');
   }
 
+  postStream() {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    if (context === null) {
+      throw new Error('Context crashed');
+    } else {
+      context.drawImage(this.refs.video as HTMLVideoElement, 0, 0);
+      const dataUrl = canvas.toDataURL('image/png');
+      api.post(dataUrl);
+    }
+  }
+
   render() {
     return (
       <span>
+        <button onClick={() => this.postStream()} >Post!</button>
         {this.state.stream && 
-          <video autoPlay src={this.state.stream} />
+          <video ref="video" autoPlay src={this.state.stream} />
         }
       </span>
     );
