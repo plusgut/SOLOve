@@ -1,15 +1,13 @@
 import * as React from 'react';
 
-import Camera from './Camera';
+import Dashboard from './Dashboard';
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Camera />
+        <Dashboard />
       </div>
     );
   }
 }
-
-export default App;
