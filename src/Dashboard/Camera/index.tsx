@@ -4,7 +4,6 @@ import api from '../../api';
 import feed from '../../interfaces/feed';
 import category from '../../interfaces/category';
 
-
 type props = { 
   feed: feed;
 };
@@ -35,6 +34,8 @@ export default class Camera extends React.Component<props, state> {
         lat: position.coords.latitude,
         long: position.coords.longitude,
       });
+    },                                       () => {
+      debugger;
     });
   }
 

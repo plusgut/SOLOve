@@ -17,7 +17,6 @@ button {
 }
 
 .logo {
-  color: #ffffff;
   font-family: 'Ackbar';
   font-size: 100px;
   font-weight: bolder;
@@ -32,4 +31,18 @@ button {
   border: 2px solid #000000;
   box-sizing: border-box;
   
+}
+
+@keyframes slidein { 
+  from {
+    margin-left: -200px;
+  } to {
+    margin-left: 0px;
+  }
+}
+
+
+.feed-image {
+  /* display: block; */
+  animation: 3s slidein;
 }
