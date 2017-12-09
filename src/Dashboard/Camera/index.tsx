@@ -34,12 +34,15 @@ export default class Camera extends React.Component<props, state> {
   }
 
   postStream(categoryId: number) {
+    const video = this.refs.video as HTMLVideoElement;
     const canvas = document.createElement('canvas');
+    canvas.width = video.clientWidth;
+    canvas.height = video.clientHeight;
     const context = canvas.getContext('2d');
     if (context === null) {
       throw new Error('Context crashed');
     } else {
-      context.drawImage(this.refs.video as HTMLVideoElement, 0, 0);
+      context.drawImage(video, 0, 0);
       const dataUrl = canvas.toDataURL('image/png');
       api.post(categoryId, dataUrl);
     }

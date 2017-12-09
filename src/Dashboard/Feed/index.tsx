@@ -10,13 +10,15 @@ type props = {
 
 type state = {};
 
+const FEED_SIZE = 200;
+
 export default class Feed extends React.Component<props, state> {
   render() {
     return <span>
       {this.props.feed.categories.map((category: category, index: number) =>
         <span key={index}>{category.title}
           {category.feed.map((feed: feedItem) => 
-            <img key={feed.id} src={feed.image} />,
+            <img width={FEED_SIZE} key={feed.id} src={feed.image} />,
           )}
         </span>,
       )}
