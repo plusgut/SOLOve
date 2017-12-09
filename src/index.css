@@ -1,7 +1,15 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Helvetica';
+  background-color: #bef3c3;
+  text-align: center;
+}
+
+.logo {
+  font-family: 'Ackbar';
+  font-size: 100px;
+  font-weight: bolder;
 }
 
 .chosen {

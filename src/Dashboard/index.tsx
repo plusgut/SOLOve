@@ -41,10 +41,15 @@ export default class Dashboard extends React.Component<props, state> {
 
   render() {
     return (
-      <div className="Dashboard">
-        <div className="total">{this.state.data.all}</div>
+      <div className="dashboard">
+        {/* <div className="total">{this.state.data.all}</div> */}
         {this.state.meToo === false && this.state.feed === false &&
           <span>
+            <div className="logo">
+              <div>SO</div>
+              <div>LO</div>
+              <div>ve</div>
+            </div>
             <button onClick={() => this.setState({ meToo: true })} >Oh, Me Too!</button>
             <button onClick={() => this.setState({ feed: true })} >Tell me about it</button>
           </span>
