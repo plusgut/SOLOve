@@ -1,8 +1,11 @@
 import * as React from 'react';
 
 import api from '../../api';
+import feed from '../../interfaces/feed';
 
-type props = {};
+type props = { 
+  feed: feed;
+};
 type state = {
   stream?: string,
 };

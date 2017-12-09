@@ -1,10 +1,8 @@
-// import feed from '../interfaces/feed';
+import feed from '../interfaces/feed';
 
 class Api {
-  get() {
-    return fetch('/api/', { method: 'GET' }).then((response: Response) => {
-      return response;
-    });
+  get(): Promise<feed> {
+    return fetch('/api/', { method: 'GET' }).then((response: Response) => response.json());
   }
   
   post(category: number, image: string) {
