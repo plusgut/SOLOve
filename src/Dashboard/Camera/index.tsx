@@ -54,12 +54,17 @@ export default class Camera extends React.Component<props, state> {
     canvas.width = video.clientWidth;
     canvas.height = video.clientHeight;
     const context = canvas.getContext('2d');
-    if (context === null || this.state.categoryId === undefined) {
+    if (context === null || this.state.categoryId === undefined || this.state.lat === undefined || this.state.long === undefined) {
       throw new Error('data is broken');
     } else {
       context.drawImage(video, 0, 0);
       const dataUrl = canvas.toDataURL('image/png');
-      api.post(this.state.categoryId, dataUrl);
+      api.post(this.state.categoryId, {
+        id: 0,
+        image: dataUrl,
+        lat: this.state.lat,
+        long: this.state.long,
+      });
     }
   }
 

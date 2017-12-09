@@ -18,7 +18,7 @@ http.createServer((request, response) => {
     request.on('end', function () {
       const post = JSON.parse(body);
       data.categories[post.category].feed.unshift({
-        image: post.image,
+        ...post.feedItem,
         id: data.categories[post.category].feed.length,
       });
 
