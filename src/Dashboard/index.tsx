@@ -47,9 +47,10 @@ export default class Dashboard extends React.Component<props, state> {
           <span>
             <div className="logo">
               <div>SO</div>
-              <div>LO</div>
-              <div>ve</div>
+              <div style={{ marginTop: '-15px' }}>LO</div>
+              <div style={{ marginTop: '-30px' }}>ve</div>
             </div>
+            <div className="hash">#weactsolo</div>
             <button onClick={() => this.setState({ meToo: true })} >Oh, Me Too!</button>
             <button onClick={() => this.setState({ feed: true })} >Tell me about it</button>
           </span>

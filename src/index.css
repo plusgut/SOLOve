@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Ackbar;
+  src: url(Ackbar.ttf.woff) format("woff");
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,12 +11,23 @@ body {
   text-align: center;
 }
 
+button {
+  background-color: #ffffff;
+  padding: 15px;
+}
+
 .logo {
+  color: #ffffff;
   font-family: 'Ackbar';
   font-size: 100px;
   font-weight: bolder;
 }
 
+.hash {
+  font-size: 30px;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
 .chosen {
   border: 2px solid #000000;
   box-sizing: border-box;
