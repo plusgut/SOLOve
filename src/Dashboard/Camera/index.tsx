@@ -30,7 +30,7 @@ export default class Camera extends React.Component<props, state> {
     throw new Error('stream error');
   }
 
-  postStream() {
+  postStream(categoryId: number) {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     if (context === null) {
@@ -38,14 +38,14 @@ export default class Camera extends React.Component<props, state> {
     } else {
       context.drawImage(this.refs.video as HTMLVideoElement, 0, 0);
       const dataUrl = canvas.toDataURL('image/png');
-      api.post(dataUrl);
+      api.post(categoryId, dataUrl);
     }
   }
 
   render() {
     return (
       <span>
-        <button onClick={() => this.postStream()} >Post!</button>
+        <button onClick={() => this.postStream(0)} >Post!</button>
         {this.state.stream && 
           <video ref="video" autoPlay src={this.state.stream} />
         }

@@ -1,6 +1,17 @@
+// import feed from '../interfaces/feed';
+
 class Api {
-  post(screenshot: string) {
-    console.log(screenshot);
+  get() {
+    return fetch('/api/', { method: 'GET' }).then((response: Response) => {
+      return response;
+    });
+  }
+  
+  post(category: number, image: string) {
+    return fetch('/api/', { method: 'POST', body: JSON.stringify({
+      category,
+      image,
+    })});
   }
 }
 
