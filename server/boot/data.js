@@ -1,11 +1,31 @@
 const categories = [{
-  title: 'foo',
-  image: '/foo.jpg',
+  title: 'cinema',
+  image: '/cinema.jpg',
   ad: '/foo_ad.jpg',
   feed: []
 }, {
-  title: 'bar',
-  image: '/bar.jpg',
+  title: 'coffee',
+  image: '/coffee.jpg',
+  ad: '/bar_ad.jpg',
+  feed: []
+}, {
+  title: 'fitness',
+  image: '/fitness.jpg',
+  ad: '/bar_ad.jpg',
+  feed: []
+}, {
+  title: 'food',
+  image: '/food.jpg',
+  ad: '/bar_ad.jpg',
+  feed: []
+}, {
+  title: 'hackathons',
+  image: '/hackathons.jpg',
+  ad: '/bar_ad.jpg',
+  feed: []
+}, {
+  title: 'traveling',
+  image: '/traveling.jpg',
   ad: '/bar_ad.jpg',
   feed: []
 }];

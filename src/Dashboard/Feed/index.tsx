@@ -14,7 +14,7 @@ const FEED_SIZE = 200;
 
 export default class Feed extends React.Component<props, state> {
   render() {
-    return <span>
+    return <span className="feed">
       {this.props.feed.categories.map((category: category, index: number) =>
         <span key={index}>{category.title}
           {category.feed.map((feed: feedItem) => 

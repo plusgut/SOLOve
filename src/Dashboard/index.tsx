@@ -13,7 +13,7 @@ type state = {
   data: feed;
 };
 
-const POLL_TIME = 400;
+const POLL_TIME = 1000;
 
 export default class Dashboard extends React.Component<props, state> {
   constructor(props: props) {
@@ -42,10 +42,10 @@ export default class Dashboard extends React.Component<props, state> {
   render() {
     return (
       <div className="Dashboard">
-        {this.state.data.all}
+        <div className="total">{this.state.data.all}</div>
         {this.state.meToo === false && this.state.feed === false &&
           <span>
-            <button onClick={() => this.setState({ meToo: true })} >Me Too!</button>
+            <button onClick={() => this.setState({ meToo: true })} >Oh, Me Too!</button>
             <button onClick={() => this.setState({ feed: true })} >Tell me about it</button>
           </span>
         }
