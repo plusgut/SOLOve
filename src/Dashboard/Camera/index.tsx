@@ -11,25 +11,31 @@ type props = {
 
 type state = {
   stream?: string,
-  categoryId: number;
+  categoryId?: number;
+  lat?: number;
+  long?: number;
 };
 
-const DEFAULT_CATEGORY = 0;
-const CATEGORY_WIDTH = 100;
+const CATEGORY_SIZE = 100;
 
 export default class Camera extends React.Component<props, state> {
   constructor(props: props) {
     super(props);
 
-    this.state = {
-      categoryId: DEFAULT_CATEGORY,
-    };
+    this.state = {};
 
     navigator.getUserMedia = navigator.getUserMedia;
 
     if (navigator.getUserMedia) {
       navigator.getUserMedia({ video: true }, (stream: MediaStream) => this.addVideoStream(stream), this.videoStreamError);
     }
+
+    navigator.geolocation.getCurrentPosition((position: Position) => {
+      this.setState({
+        lat: position.coords.latitude,
+        long: position.coords.longitude,
+      });
+    });
   }
 
   addVideoStream(stream: MediaStream) {
@@ -42,18 +48,18 @@ export default class Camera extends React.Component<props, state> {
     throw new Error('stream error');
   }
 
-  postStream(categoryId: number) {
+  postStream() {
     const video = this.refs.video as HTMLVideoElement;
     const canvas = document.createElement('canvas');
     canvas.width = video.clientWidth;
     canvas.height = video.clientHeight;
     const context = canvas.getContext('2d');
-    if (context === null) {
-      throw new Error('Context crashed');
+    if (context === null || this.state.categoryId === undefined) {
+      throw new Error('data is broken');
     } else {
       context.drawImage(video, 0, 0);
       const dataUrl = canvas.toDataURL('image/png');
-      api.post(categoryId, dataUrl);
+      api.post(this.state.categoryId, dataUrl);
     }
   }
 
@@ -68,21 +74,28 @@ export default class Camera extends React.Component<props, state> {
   }
 
   render() {
+    const videoSize = this.props.feed.categories.length * CATEGORY_SIZE;
     return (
       <span className="camera">
         <div>
           {this.props.feed.categories.map((category: category, categoryId: number) =>
-            <img key={categoryId} width={CATEGORY_WIDTH} src={category.image} className={this.getCategoryClass(categoryId)} onClick={() => this.setCategoryId(categoryId)} />,
+            <img key={categoryId} width={CATEGORY_SIZE} height={CATEGORY_SIZE} src={category.image} className={this.getCategoryClass(categoryId)} onClick={() => this.setCategoryId(categoryId)} />,
           )}
         </div>
 
         <div>
           {this.state.stream && 
-            <video ref="video" autoPlay src={this.state.stream} />
+            <video width={videoSize} ref="video" autoPlay src={this.state.stream} />
           }
         </div>
 
-        <button onClick={() => this.postStream(this.state.categoryId)} >Submit!</button>
+        {this.state.lat && this.state.long &&
+          <div>lat: {this.state.lat} | {this.state.long}</div>
+        }
+
+        {this.state.categoryId &&
+          <button onClick={() => this.postStream()} >Submit!</button>
+        }
       </span>
     );
   }
