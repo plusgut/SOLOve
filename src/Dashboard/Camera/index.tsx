@@ -89,8 +89,10 @@ export default class Camera extends React.Component<props, state> {
         </div>
 
         <div>
-          {this.state.stream && 
+          {this.state.stream && this.state.categoryId !== undefined ?
             <video width={videoSize} ref="video" autoPlay src={this.state.stream} />
+          : 
+            <span>Wähle Kategorie aus, um Bilderupload zu machen</span>
           }
         </div>
 
@@ -98,8 +100,8 @@ export default class Camera extends React.Component<props, state> {
           <div>lat: {this.state.lat} | {this.state.long}</div>
         }
 
-        {this.state.categoryId &&
-          <button onClick={() => this.postStream()} >Submit!</button>
+        {this.state.categoryId !== undefined &&
+          <button onClick={() => this.postStream()} >Submit {this.props.feed.categories[this.state.categoryId].title}</button>
         }
       </span>
     );
